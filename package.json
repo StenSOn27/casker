@@ -4,7 +4,7 @@
   "description": "A database backup CLI",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"no tests yet\" && exit 0",
     "prepare": "husky",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
