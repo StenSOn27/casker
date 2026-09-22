@@ -1,0 +1,55 @@
+{
+  "name": "casker",
+  "version": "1.0.0",
+  "description": "A database backup CLI",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"no tests yet\" && exit 0",
+    "prepare": "husky",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "inspector": "npx @eslint/config-inspector"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StenSOn27/casker.git"
+  },
+  "keywords": ["cli"],
+  "preferGlobal": true,
+  "author": "Taras Shevchyk(tarashevhik27@gmail.com)",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/StenSOn27/casker/issues"
+  },
+  "homepage": "https://github.com/StenSOn27/casker#readme",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "figlet": "^1.11.4",
+    "gradient-string": "^3.0.0",
+    "inquirer": "^14.2.2",
+    "inquirer-file-selector": "^2.0.0",
+    "inquirer-select-directory": "^1.2.0",
+    "readline": "^1.3.0",
+    "yargs": "^18.1.0"
+  },
+  "bin": {
+    "casker": "./bin/index.js"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.10.0",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^17.12.0",
+    "husky": "^9.1.7",
+    "jiti": "^2.7.0",
+    "lint-staged": "^17.5.1",
+    "prettier": "^3.9.6",
+    "typescript-eslint": "^8.70.0"
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
+  }
+}
