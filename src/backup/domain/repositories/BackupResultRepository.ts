@@ -1,5 +1,6 @@
 import type { BackupResult } from '../entities/BackupResult.js';
 
-abstract class BackupResultRepository {
-  abstract save(result: BackupResult): string;
+export abstract class BackupResultRepository {
+  abstract create(result: BackupResult): Promise<string>;
+  abstract getAll(): Promise<BackupResult[]>;
 }
