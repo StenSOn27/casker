@@ -1,8 +1,8 @@
 import { v4 as uuidv4 } from 'uuid';
 import type { DatabaseConnectionProps } from '../value-objects/ConnectionConfig.js';
 
-type Status = 'success' | 'failed';
-type DriverType = DatabaseConnectionProps['type'];
+export type Status = 'success' | 'failed';
+export type DriverType = DatabaseConnectionProps['type'];
 
 export class BackupResult {
   private readonly id: string;
@@ -59,5 +59,33 @@ export class BackupResult {
     errorMessage?: string,
   ): BackupResult {
     return new BackupResult(id, driverType, filePath, sizeBytes, status, createdAt, errorMessage);
+  }
+
+  getId(): string {
+    return this.id;
+  }
+
+  getDriverType(): DriverType {
+    return this.driverType;
+  }
+
+  getFilePath(): string {
+    return this.filePath;
+  }
+
+  getSizeBytes(): number {
+    return this.sizeBytes;
+  }
+
+  getStatus(): Status {
+    return this.status;
+  }
+
+  getErrorMessage(): string | undefined {
+    return this.errorMessage;
+  }
+
+  getCreatedAt(): Date {
+    return this.createdAt;
   }
 }
