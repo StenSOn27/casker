@@ -13,19 +13,51 @@ export class BackupResult {
   private readonly errorMessage?: string | undefined = undefined;
   private readonly createdAt: Date;
 
-  constructor(
+  private constructor(
+    id: string,
     driverType: DriverType,
     filePath: string,
     sizeBytes: number,
     status: Status,
+    createdAt: Date,
     errorMessage?: string,
   ) {
-    this.id = uuidv4();
+    this.id = id;
     this.driverType = driverType;
     this.filePath = filePath;
     this.sizeBytes = sizeBytes;
     this.status = status;
     this.errorMessage = errorMessage;
-    this.createdAt = new Date();
+    this.createdAt = createdAt;
+  }
+
+  static create(
+    driverType: DriverType,
+    filePath: string,
+    sizeBytes: number,
+    status: Status,
+    errorMessage?: string,
+  ): BackupResult {
+    return new BackupResult(
+      uuidv4(),
+      driverType,
+      filePath,
+      sizeBytes,
+      status,
+      new Date(),
+      errorMessage,
+    );
+  }
+
+  static reconstitute(
+    id: string,
+    driverType: DriverType,
+    filePath: string,
+    sizeBytes: number,
+    status: Status,
+    createdAt: Date,
+    errorMessage?: string,
+  ): BackupResult {
+    return new BackupResult(id, driverType, filePath, sizeBytes, status, createdAt, errorMessage);
   }
 }
