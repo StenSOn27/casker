@@ -5,21 +5,21 @@ export class BackupResultModel {
   @PrimaryGeneratedColumn('uuid')
   id!: string;
 
-  @Column()
+  @Column({ type: 'varchar' })
   driverType!: string;
 
-  @Column()
+  @Column({ type: 'varchar' })
   filePath!: string;
 
-  @Column()
+  @Column({ type: 'bigint' })
   sizeBytes!: number;
 
-  @Column()
+  @Column({ type: 'varchar' })
   status!: string;
 
-  @Column()
+  @Column({ type: 'varchar', nullable: true })
   errorMessage?: string | undefined;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ type: 'datetime' })
   created_at!: Date;
 }
