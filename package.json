@@ -10,7 +10,7 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "inspector": "npx @eslint/config-inspector"
+    "typeorm": "typeorm-ts-node-esm"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,9 @@
   },
   "homepage": "https://github.com/StenSOn27/casker#readme",
   "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "better-sqlite3": "^12.11.1",
+    "deep-equal": "^2.2.3",
     "dotenv": "^17.4.2",
     "figlet": "^1.11.4",
     "gradient-string": "^3.0.0",
@@ -33,6 +36,11 @@
     "inquirer-file-selector": "^2.0.0",
     "inquirer-select-directory": "^1.2.0",
     "readline": "^1.3.0",
+    "reflect-metadata": "^0.2.2",
+    "shallow-equal-object": "^1.1.1",
+    "sqlite3": "^6.0.1",
+    "typeorm": "^1.1.1",
+    "uuid": "^14.0.2",
     "yargs": "^18.1.0"
   },
   "bin": {
@@ -40,6 +48,8 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/node": "^26.6.3",
     "eslint": "^10.10.0",
     "eslint-config-prettier": "^10.1.8",
     "globals": "^17.12.0",
@@ -47,9 +57,15 @@
     "jiti": "^2.7.0",
     "lint-staged": "^17.5.1",
     "prettier": "^3.9.6",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.3",
     "typescript-eslint": "^8.70.0"
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"
+  },
+  "allowScripts": {
+    "bcrypt@5.1.1": true,
+    "spawn-sync@1.0.15": true
   }
 }
