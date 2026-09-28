@@ -1,7 +1,7 @@
 import { ValueObject } from '../../../shared/domain/value-objects/ValueObject.js';
 import type { ValueObjectProps } from '../../../shared/domain/value-objects/ValueObject.js';
 
-interface PostgresConnectionProps extends ValueObjectProps {
+export interface PostgresConnectionProps extends ValueObjectProps {
   type: 'postgresql';
   host: string;
   port: number;
@@ -10,7 +10,7 @@ interface PostgresConnectionProps extends ValueObjectProps {
   password: string;
 }
 
-interface MySqlProps extends ValueObjectProps {
+export interface MySqlProps extends ValueObjectProps {
   type: 'mysql';
   host: string;
   port: number;
