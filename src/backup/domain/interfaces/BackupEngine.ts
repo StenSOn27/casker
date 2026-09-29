@@ -3,6 +3,6 @@ import type { DatabaseConnectionProps } from '../value-objects/ConnectionConfig.
 import type { CommandExecutor } from './CommandExecutor.js';
 
 export abstract class BackupEngine<T extends DatabaseConnectionProps = DatabaseConnectionProps> {
-  protected constructor(protected executor: CommandExecutor) {}
-  abstract backup(config: T): Promise<BackupResult>;
+  constructor(protected executor: CommandExecutor) {}
+  abstract backup(config: T, outputDir: string): Promise<BackupResult>;
 }
