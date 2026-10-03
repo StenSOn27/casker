@@ -10,7 +10,7 @@ export interface PostgresConnectionProps extends ValueObjectProps {
   password: string;
 }
 
-export interface MySqlProps extends ValueObjectProps {
+export interface MySqlConnectionProps extends ValueObjectProps {
   type: 'mysql';
   host: string;
   port: number;
@@ -19,7 +19,7 @@ export interface MySqlProps extends ValueObjectProps {
   password: string;
 }
 
-export type DatabaseConnectionProps = PostgresConnectionProps | MySqlProps;
+export type DatabaseConnectionProps = PostgresConnectionProps | MySqlConnectionProps;
 
 export class DatabaseConnectionConfig extends ValueObject<DatabaseConnectionProps> {
   private constructor(props: DatabaseConnectionProps) {
