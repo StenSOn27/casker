@@ -2,7 +2,7 @@
   "name": "casker",
   "version": "1.0.0",
   "description": "A database backup CLI",
-  "main": "index.js",
+  "main": "./src/shared/presentation/bin/run.js",
   "scripts": {
     "test": "echo \"no tests yet\" && exit 0",
     "prepare": "husky",
@@ -10,7 +10,8 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "typeorm": "typeorm-ts-node-esm"
+    "typeorm": "typeorm-ts-node-esm",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,7 @@
   },
   "homepage": "https://github.com/StenSOn27/casker#readme",
   "dependencies": {
+    "@oclif/core": "^5.1.2",
     "bcryptjs": "^3.0.3",
     "better-sqlite3": "^12.11.1",
     "columnify": "^1.6.0",
@@ -44,7 +46,7 @@
     "yargs": "^18.1.0"
   },
   "bin": {
-    "casker": "./bin/index.js"
+    "casker": "./src/shared/presentation/bin/run.js"
   },
   "devDependencies": {
     "@commitlint/cli": "^21.2.3",
@@ -61,6 +63,7 @@
     "jiti": "^2.7.0",
     "lint-staged": "^17.5.1",
     "lodash-es": "^4.18.1",
+    "oclif": "^6.0.2",
     "prettier": "^3.9.6",
     "ts-node": "^10.9.2",
     "tsx": "^4.23.15",
@@ -75,5 +78,18 @@
     "spawn-sync@1.0.15": true,
     "better-sqlite3@12.11.1": true,
     "esbuild@0.28.2": true
+  },
+  "oclif": {
+    "bin": "casker",
+    "dirname": "casker",
+    "topicSeparator": " ",
+    "commands": {
+      "strategy": "explicit",
+      "target": "./dist/src/composition/commands.js",
+      "identifier": "COMMANDS"
+    },
+    "helpOptions": {
+      "flagSortOrder": "none"
+    }
   }
 }
