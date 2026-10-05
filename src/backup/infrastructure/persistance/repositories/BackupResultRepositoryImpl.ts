@@ -1,6 +1,10 @@
-import { BackupResult } from '../../../domain/entities/BackupResult.js';
+import {
+  BackupResult,
+  type DriverType,
+  type Status,
+} from '../../../domain/entities/BackupResult.js';
 import { BackupResultRepository } from '../../../domain/repositories/BackupResultRepository.js';
-import { AppDataSource } from '../config/data-source.js';
+import { AppDataSource } from '../../../../shared/infrastructure/config/data-source.js';
 import { BackupResultModel } from '../entities/BackupResultModel.js';
 import { BackupResultMapper } from '../mappers/BackupResultMapper.js';
 
@@ -13,6 +17,19 @@ export class BackupResultRepositoryImpl extends BackupResultRepository {
 
   async getAll(): Promise<BackupResult[]> {
     const models = await AppDataSource.manager.find(BackupResultModel);
+    return models.map((model) => BackupResultMapper.toDomain(model));
+  }
+
+  async find(limit: number, status?: Status, driverType?: DriverType): Promise<BackupResult[]> {
+    const models = await AppDataSource.manager.find(BackupResultModel, {
+      where: {
+        ...(status !== undefined ? { status } : {}),
+        ...(driverType !== undefined ? { driverType } : {}),
+      },
+      order: { created_at: 'DESC' },
+      take: limit,
+    });
+
     return models.map((model) => BackupResultMapper.toDomain(model));
   }
 }
