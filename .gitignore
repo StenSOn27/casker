@@ -142,3 +142,7 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
 .husky
+
+# Internal files
+backups/
+casker
