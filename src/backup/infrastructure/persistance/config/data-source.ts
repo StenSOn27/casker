@@ -8,6 +8,6 @@ export const AppDataSource = new DataSource({
   synchronize: false,
   logging: true,
   entities: [BackupResultModel],
-  migrations: ['src/backup/infrastructure/persistance/config/migrations/**/*.ts'],
+  migrations: ['src/backup/infrastructure/persistance/config/migrations/**/*{.ts,.js}'],
   subscribers: [],
 });

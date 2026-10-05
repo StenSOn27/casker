@@ -7,7 +7,7 @@ import type { CommandExecutor } from '../../domain/interfaces/CommandExecutor.js
 type BackupEngineConstructor = new (executor: CommandExecutor) => BackupEngine;
 
 // @ts-expect-error TS2741: mysql engine is not implemented yet
-const engines: Record<DriverType, BackupEngineConstructor> = {
+export const engines: Record<DriverType, BackupEngineConstructor> = {
   postgresql: PostgresBackupEngine,
   // mysql: MySqlBackupEngine,
 };
