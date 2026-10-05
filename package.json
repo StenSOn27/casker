@@ -71,7 +71,7 @@
     "typescript-eslint": "^8.70.0"
   },
   "lint-staged": {
-    "**/*": "prettier --write --ignore-unknown"
+    "**/*": ["eslint . --fix", "prettier --write --ignore-unknown"]
   },
   "allowScripts": {
     "bcrypt@5.1.1": true,
