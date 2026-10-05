@@ -1,13 +1,13 @@
 import 'reflect-metadata';
 import { DataSource } from 'typeorm';
-import { BackupResultModel } from '../entities/BackupResultModel.js';
+import { BackupResultModel } from '../../../backup/infrastructure/persistance/entities/BackupResultModel.js';
 
 export const AppDataSource = new DataSource({
   type: 'better-sqlite3',
   database: 'casker',
   synchronize: false,
-  logging: true,
+  logging: false,
   entities: [BackupResultModel],
-  migrations: ['src/backup/infrastructure/persistance/config/migrations/**/*{.ts,.js}'],
+  migrations: ['src/backup/infrastructure/persistance/migrations/**/*{.ts,.js}'],
   subscribers: [],
 });

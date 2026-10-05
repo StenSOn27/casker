@@ -4,7 +4,7 @@ import {
   type Status,
 } from '../../../domain/entities/BackupResult.js';
 import { BackupResultRepository } from '../../../domain/repositories/BackupResultRepository.js';
-import { AppDataSource } from '../config/data-source.js';
+import { AppDataSource } from '../../../../shared/infrastructure/config/data-source.js';
 import { BackupResultModel } from '../entities/BackupResultModel.js';
 import { BackupResultMapper } from '../mappers/BackupResultMapper.js';
 
