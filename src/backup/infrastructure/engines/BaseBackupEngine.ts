@@ -5,6 +5,7 @@ import { BackupResult } from '../../domain/entities/BackupResult.js';
 import type { CommandExecutor, CommandSpec } from '../../domain/interfaces/CommandExecutor.js';
 import type { DatabaseConnectionProps } from '../../domain/value-objects/ConnectionConfig.js';
 import { errorMessage } from '../../../shared/utils/ErrorMessage.js';
+import { BackupFailedError } from '../../domain/errors/BackupFailedError.js';
 
 export abstract class BaseBackupEngine<T extends DatabaseConnectionProps> extends BackupEngine<T> {
   abstract buildBackupCommandSpec(config: T, filePath: string): CommandSpec;
@@ -21,8 +22,7 @@ export abstract class BaseBackupEngine<T extends DatabaseConnectionProps> extend
       await this.executor.execute(this.buildBackupCommandSpec(config, filePath));
     } catch (err) {
       await fs.rm(filePath, { force: true });
-      BackupResult.create(config.type, filePath, 0, 'failed', errorMessage(err), config.database);
-      throw err;
+      throw new BackupFailedError(errorMessage(err), filePath);
     }
 
     const stats = await fs.stat(filePath);
