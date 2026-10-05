@@ -26,6 +26,7 @@ export class BackupResultRepositoryImpl extends BackupResultRepository {
         ...(status !== undefined ? { status } : {}),
         ...(driverType !== undefined ? { driverType } : {}),
       },
+      order: { created_at: 'DESC' },
       take: limit,
     });
 
