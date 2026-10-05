@@ -27,11 +27,11 @@ export default class ListBackupCliCommand extends Command {
 
   private toRow(b: BackupListItem) {
     return {
-      id: b.id.slice(0, 8),
-      status: b.status,
+      id: chalk.yellow(b.id.slice(0, 8)),
+      status: b.status === 'failed' ? chalk.red(b.status) : chalk.green(b.status),
       size: b.status === 'failed' ? '-' : this.formatSize(b.sizeBytes),
       driver: b.driverType,
-      created: b.createdAt.toDateString(),
+      created: b.createdAt.toUTCString(),
       database: b.name,
     };
   }
@@ -43,6 +43,7 @@ export default class ListBackupCliCommand extends Command {
       limit: flags.limit,
       status: flags.status,
       driver: flags.driver,
+      all: flags.all,
     };
   }
 
@@ -73,7 +74,7 @@ export default class ListBackupCliCommand extends Command {
     const output: string[] = [];
     backups.forEach((b, i) => {
       output.push(lines[i]!);
-      if (b.errorMessage) output.push(`  error: ${b.errorMessage}`);
+      if (b.errorMessage) output.push(chalk.red(`  error: ${b.errorMessage}`));
     });
 
     this.log(output.join('\n'));
