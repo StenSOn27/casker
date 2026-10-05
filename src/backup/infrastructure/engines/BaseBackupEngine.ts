@@ -21,12 +21,18 @@ export abstract class BaseBackupEngine<T extends DatabaseConnectionProps> extend
       await this.executor.execute(this.buildBackupCommandSpec(config, filePath));
     } catch (err) {
       await fs.rm(filePath, { force: true });
-      BackupResult.create(config.type, filePath, 0, 'failed', errorMessage(err));
+      BackupResult.create(config.type, filePath, 0, 'failed', errorMessage(err), config.database);
       throw err;
     }
 
     const stats = await fs.stat(filePath);
-    const backupResult = BackupResult.create(config.type, filePath, stats.size, 'success');
+    const backupResult = BackupResult.create(
+      config.type,
+      filePath,
+      stats.size,
+      'success',
+      config.database,
+    );
 
     return backupResult;
   }
