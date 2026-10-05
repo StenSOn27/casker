@@ -8,7 +8,7 @@ import type { DriverType } from '../../../domain/entities/BackupResult.js';
 import { createBackupHandler } from '../../../composition/CreateBackupHandler.js';
 
 export default class CreateBackupCliCommand extends Command {
-  static override args = {};
+  // static override args = {};
   static override description =
     'Create a backup of the specified database connection and save it to the output directory';
   // static override examples = ['<%= config.bin %> <%= command.id %>'];
@@ -39,7 +39,7 @@ export default class CreateBackupCliCommand extends Command {
     }),
   };
 
-  static constraints: any[] = [
+  static constraints: (typeof Command)['constraints'] = [
     Constraints.flag('container')
       .is.dependentOn('execution')
       .when.thisIsTrue((flags): boolean => {
