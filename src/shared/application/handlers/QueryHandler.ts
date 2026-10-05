@@ -1,3 +1,3 @@
-export abstract class QueryHandler {
-  abstract handle<TCommand, TResult>(command: TCommand): Promise<TResult>;
+export abstract class QueryHandler<TQuery, TResult> {
+  abstract handle(query: TQuery): Promise<TResult>;
 }
