@@ -43,5 +43,6 @@
     "moduleResolution": "nodenext",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
-  }
+  },
+  "exclude": ["eslint.config.mts", "node_modules", "dist"]
 }
