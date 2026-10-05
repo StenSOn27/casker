@@ -4,6 +4,7 @@ export interface ListBackupQuery {
   limit: number;
   status?: Status | undefined;
   driver?: DriverType | undefined;
+  all?: boolean | undefined;
 }
 
 export interface BackupListItem {

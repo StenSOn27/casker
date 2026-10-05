@@ -10,7 +10,10 @@ export class ListBackupQueryHandler implements QueryHandler<ListBackupQuery, Bac
   }
 
   async handle(query: ListBackupQuery): Promise<BackupListItem[]> {
-    const backupResults = await this.repository.find(query.limit, query.status, query.driver);
+    const backupResults = query.all
+      ? await this.repository.getAll()
+      : await this.repository.find(query.limit, query.status, query.driver);
+
     return backupResults.map((r) => ({
       id: r.getId(),
       driverType: r.getDriverType(),
