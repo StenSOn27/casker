@@ -10,6 +10,7 @@ export class BackupResult {
   private readonly filePath: string;
   private readonly sizeBytes: number;
   private readonly status: Status;
+  private readonly name: string;
   private readonly errorMessage?: string | undefined = undefined;
   private readonly createdAt: Date;
 
@@ -19,6 +20,7 @@ export class BackupResult {
     filePath: string,
     sizeBytes: number,
     status: Status,
+    name: string,
     createdAt: Date,
     errorMessage?: string,
   ) {
@@ -27,6 +29,7 @@ export class BackupResult {
     this.filePath = filePath;
     this.sizeBytes = sizeBytes;
     this.status = status;
+    this.name = name;
     this.errorMessage = errorMessage;
     this.createdAt = createdAt;
   }
@@ -36,6 +39,7 @@ export class BackupResult {
     filePath: string,
     sizeBytes: number,
     status: Status,
+    name: string,
     errorMessage?: string,
   ): BackupResult {
     return new BackupResult(
@@ -44,6 +48,7 @@ export class BackupResult {
       filePath,
       sizeBytes,
       status,
+      name,
       new Date(),
       errorMessage,
     );
@@ -55,10 +60,20 @@ export class BackupResult {
     filePath: string,
     sizeBytes: number,
     status: Status,
+    name: string,
     createdAt: Date,
     errorMessage?: string,
   ): BackupResult {
-    return new BackupResult(id, driverType, filePath, sizeBytes, status, createdAt, errorMessage);
+    return new BackupResult(
+      id,
+      driverType,
+      filePath,
+      sizeBytes,
+      status,
+      name,
+      createdAt,
+      errorMessage,
+    );
   }
 
   getId(): string {
@@ -87,5 +102,9 @@ export class BackupResult {
 
   getCreatedAt(): Date {
     return this.createdAt;
+  }
+
+  getName(): string {
+    return this.name;
   }
 }

@@ -10,6 +10,7 @@ export class BackupResultMapper {
       model.filePath,
       model.sizeBytes,
       model.status as Status,
+      model.name,
       model.created_at,
       model.errorMessage,
     );
@@ -22,6 +23,7 @@ export class BackupResultMapper {
     model.filePath = entity.getFilePath();
     model.sizeBytes = entity.getSizeBytes();
     model.status = entity.getStatus();
+    model.name = entity.getName();
     model.errorMessage = entity.getErrorMessage();
     model.created_at = entity.getCreatedAt();
     return model;

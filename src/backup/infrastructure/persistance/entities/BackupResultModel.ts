@@ -17,6 +17,9 @@ export class BackupResultModel {
   @Column({ type: 'varchar' })
   status!: string;
 
+  @Column({ type: 'varchar' })
+  name!: string;
+
   @Column({ type: 'varchar', nullable: true })
   errorMessage?: string | undefined;
 

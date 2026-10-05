@@ -4,7 +4,7 @@ import { BackupResultRepository } from '../../domain/repositories/BackupResultRe
 import type { CommandExecutorFactory } from '../../domain/factories/CommandExecutorFactory.js';
 import type { CreateBackupCommand } from './CreateBackupCommand.js';
 
-export class CreateBackupCommandHandler extends CommandHandler<CreateBackupCommand, string> {
+export class CreateBackupCommandHandler implements CommandHandler<CreateBackupCommand, string> {
   private repository: BackupResultRepository;
   private engineFactory: BackupEngineFactory;
   private executorFactory: CommandExecutorFactory;
@@ -14,7 +14,6 @@ export class CreateBackupCommandHandler extends CommandHandler<CreateBackupComma
     engineFactory: BackupEngineFactory,
     executorFactory: CommandExecutorFactory,
   ) {
-    super();
     this.repository = repository;
     this.engineFactory = engineFactory;
     this.executorFactory = executorFactory;
