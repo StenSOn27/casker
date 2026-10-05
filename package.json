@@ -85,11 +85,14 @@
     "topicSeparator": " ",
     "commands": {
       "strategy": "explicit",
-      "target": "./dist/src/composition/commands.js",
+      "target": "./dist/src/shared/composition/commands.js",
       "identifier": "COMMANDS"
     },
     "helpOptions": {
       "flagSortOrder": "none"
+    },
+    "hooks": {
+      "init": ["./dist/src/shared/presentation/hooks/init/dataSourceInitialize"]
     }
   }
 }
