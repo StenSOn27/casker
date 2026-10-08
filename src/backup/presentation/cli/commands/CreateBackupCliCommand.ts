@@ -1,11 +1,9 @@
 import { Command, Constraints, Flags, Interfaces } from '@oclif/core';
 import chalk from 'chalk';
-import type {
-  CreateBackupCommand,
-  ExecutionTarget,
-} from '../../../application/commands/CreateBackupCommand.js';
+import type { CreateBackupCommand } from '../../../application/commands/CreateBackupCommand.js';
 import type { DriverType } from '../../../domain/entities/BackupResult.js';
 import { createBackupHandler } from '../../../composition/CreateBackupHandler.js';
+import type { ExecutionTarget } from '../../../../shared/domain/factories/CommandExecutorFactory.js';
 
 export default class CreateBackupCliCommand extends Command {
   // static override args = {};
