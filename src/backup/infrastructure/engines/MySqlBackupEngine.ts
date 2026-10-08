@@ -2,7 +2,7 @@ import type {
   CommandExecutor,
   CommandSpec,
 } from '../../../shared/domain/interfaces/CommandExecutor.js';
-import type { MySqlConnectionProps } from '../../domain/value-objects/ConnectionConfig.js';
+import type { MySqlConnectionProps } from '../../../shared/domain/value-objects/ConnectionConfig.js';
 import { BaseBackupEngine } from './BaseBackupEngine.js';
 
 export class MySqlBackupEngine extends BaseBackupEngine<MySqlConnectionProps> {

@@ -1,5 +1,5 @@
-import { ValueObject } from '../../../shared/domain/value-objects/ValueObject.js';
-import type { ValueObjectProps } from '../../../shared/domain/value-objects/ValueObject.js';
+import { ValueObject } from './ValueObject.js';
+import type { ValueObjectProps } from './ValueObject.js';
 
 export interface PostgresConnectionProps extends ValueObjectProps {
   type: 'postgresql';

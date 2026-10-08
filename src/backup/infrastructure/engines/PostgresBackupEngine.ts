@@ -2,7 +2,7 @@ import type {
   CommandExecutor,
   CommandSpec,
 } from '../../../shared/domain/interfaces/CommandExecutor.js';
-import type { PostgresConnectionProps } from '../../domain/value-objects/ConnectionConfig.js';
+import type { PostgresConnectionProps } from '../../../shared/domain/value-objects/ConnectionConfig.js';
 import { BaseBackupEngine } from './BaseBackupEngine.js';
 
 export class PostgresBackupEngine extends BaseBackupEngine<PostgresConnectionProps> {

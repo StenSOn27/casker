@@ -2,7 +2,7 @@ import { join } from 'node:path';
 import * as fs from 'node:fs/promises';
 import { BackupEngine } from '../../domain/interfaces/BackupEngine.js';
 import { BackupResult } from '../../domain/entities/BackupResult.js';
-import type { DatabaseConnectionProps } from '../../domain/value-objects/ConnectionConfig.js';
+import type { DatabaseConnectionProps } from '../../../shared/domain/value-objects/ConnectionConfig.js';
 import { errorMessage } from '../../../shared/utils/ErrorMessage.js';
 import { BackupFailedError } from '../../domain/errors/BackupFailedError.js';
 import type {
