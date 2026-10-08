@@ -1,6 +1,5 @@
-import type { DatabaseConnectionProps } from '../../domain/value-objects/ConnectionConfig.js';
-
-export type ExecutionTarget = { mode: 'local' } | { mode: 'docker'; container: string };
+import type { ExecutionTarget } from '../../../shared/domain/factories/CommandExecutorFactory.js';
+import type { DatabaseConnectionProps } from '../../../shared/domain/value-objects/ConnectionConfig.js';
 
 export interface CreateBackupCommand {
   connection: DatabaseConnectionProps;

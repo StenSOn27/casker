@@ -1,8 +1,11 @@
 import { spawn } from 'node:child_process';
-import { CommandExecutor, type CommandSpec } from '../../domain/interfaces/CommandExecutor.js';
 import { mkdir } from 'node:fs/promises';
 import { dirname } from 'node:path';
 import { open } from 'node:fs/promises';
+import type {
+  CommandExecutor,
+  CommandSpec,
+} from '../../../shared/domain/interfaces/CommandExecutor.js';
 
 export abstract class BaseCommandExecutor implements CommandExecutor {
   abstract execute(command: CommandSpec): Promise<void>;

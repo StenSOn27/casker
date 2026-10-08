@@ -1,6 +1,6 @@
-import type { CommandExecutor } from '../../../shared/domain/interfaces/CommandExecutor.js';
-import type { BackupResult, DriverType } from '../entities/BackupResult.js';
+import type { BackupResult, DriverType } from '../../../backup/domain/entities/BackupResult.js';
 import type { DatabaseConnectionProps } from '../../../shared/domain/value-objects/ConnectionConfig.js';
+import type { CommandExecutor } from '../../../shared/domain/interfaces/CommandExecutor.js';
 
 export abstract class BackupEngine<T extends DatabaseConnectionProps = DatabaseConnectionProps> {
   constructor(protected executor: CommandExecutor) {}

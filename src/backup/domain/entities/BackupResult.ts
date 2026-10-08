@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import type { DatabaseConnectionProps } from '../value-objects/ConnectionConfig.js';
+import type { DatabaseConnectionProps } from '../../../shared/domain/value-objects/ConnectionConfig.js';
 
 export type Status = 'success' | 'failed';
 export type DriverType = DatabaseConnectionProps['type'];

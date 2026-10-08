@@ -1,8 +1,8 @@
-import { BackupEngineFactory } from '../../domain/factories/BackupEngineFactory.js';
 import { PostgresBackupEngine } from '../engines/PostgresBackupEngine.js';
 import type { DriverType } from '../../domain/entities/BackupResult.js';
 import type { BackupEngine } from '../../domain/interfaces/BackupEngine.js';
-import type { CommandExecutor } from '../../domain/interfaces/CommandExecutor.js';
+import type { CommandExecutor } from '../../../shared/domain/interfaces/CommandExecutor.js';
+import { BackupEngineFactory } from '../../domain/factories/BackupEngineFactory.js';
 
 type BackupEngineConstructor = new (executor: CommandExecutor) => BackupEngine;
 

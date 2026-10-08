@@ -1,6 +1,9 @@
-import type { ExecutionTarget } from '../../application/commands/CreateBackupCommand.js';
-import type { CommandExecutorFactory } from '../../domain/factories/CommandExecutorFactory.js';
-import type { CommandExecutor } from '../../domain/interfaces/CommandExecutor.js';
+import type {
+  CommandExecutorFactory,
+  ExecutionTarget,
+} from '../../../shared/domain/factories/CommandExecutorFactory.js';
+import type { CommandExecutor } from '../../../shared/domain/interfaces/CommandExecutor.js';
+
 import { DockerCommandExecutor } from '../executors/DockerCommandExecutor.js';
 import { LocalCommandExecutor } from '../executors/LocalCommandExecutor.js';
 

@@ -1,10 +1,10 @@
 import { CommandHandler } from '../../../shared/application/handlers/CommandHandler.js';
-import { BackupEngineFactory } from '../../domain/factories/BackupEngineFactory.js';
 import { BackupResultRepository } from '../../domain/repositories/BackupResultRepository.js';
-import type { CommandExecutorFactory } from '../../domain/factories/CommandExecutorFactory.js';
+import type { CommandExecutorFactory } from '../../../shared/domain/factories/CommandExecutorFactory.js';
 import type { CreateBackupCommand } from './CreateBackupCommand.js';
 import { BackupResult } from '../../domain/entities/BackupResult.js';
 import { BackupFailedError } from '../../domain/errors/BackupFailedError.js';
+import type { BackupEngineFactory } from '../../domain/factories/BackupEngineFactory.js';
 
 export class CreateBackupCommandHandler implements CommandHandler<CreateBackupCommand, string> {
   private repository: BackupResultRepository;

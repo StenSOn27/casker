@@ -2,17 +2,17 @@ import type {
   CommandExecutor,
   CommandSpec,
 } from '../../../shared/domain/interfaces/CommandExecutor.js';
-import type { PostgresConnectionProps } from '../../../shared/domain/value-objects/ConnectionConfig.js';
+import type { MySqlConnectionProps } from '../../../shared/domain/value-objects/ConnectionConfig.js';
 import { BaseBackupEngine } from './BaseBackupEngine.js';
 
-export class PostgresBackupEngine extends BaseBackupEngine<PostgresConnectionProps> {
+export class MySqlBackupEngine extends BaseBackupEngine<MySqlConnectionProps> {
   constructor(executor: CommandExecutor) {
     super(executor);
   }
 
-  buildBackupCommandSpec(config: PostgresConnectionProps, filePath: string): CommandSpec {
+  buildBackupCommandSpec(config: MySqlConnectionProps, filePath: string): CommandSpec {
     return {
-      bin: 'pg_dump',
+      bin: 'mysql_dump',
       args: [
         '-h',
         `${config.host}`,
