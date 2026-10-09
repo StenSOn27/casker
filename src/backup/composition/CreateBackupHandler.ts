@@ -1,6 +1,6 @@
 import { CreateBackupCommandHandler } from '../application/commands/CreateBackupCommandHandler.js';
 import { BackupEngineFactoryImpl } from '../infrastructure/factories/BackupEngineFactoryImpl.js';
-import { CommandExecutorFactoryImpl } from '../infrastructure/factories/CommandExecutorFactoryImpl.js';
+import { CommandExecutorFactoryImpl } from '../../shared/infrastructure/factories/CommandExecutorFactoryImpl.js';
 import { BackupResultRepositoryImpl } from '../infrastructure/persistance/repositories/BackupResultRepositoryImpl.js';
 
 export function createBackupHandler(): CreateBackupCommandHandler {

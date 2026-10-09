@@ -1,11 +1,11 @@
 import type {
   CommandExecutorFactory,
   ExecutionTarget,
-} from '../../../shared/domain/factories/CommandExecutorFactory.js';
-import type { CommandExecutor } from '../../../shared/domain/interfaces/CommandExecutor.js';
+} from '../../domain/factories/CommandExecutorFactory.js';
+import type { CommandExecutor } from '../../domain/interfaces/CommandExecutor.js';
 
-import { DockerCommandExecutor } from '../executors/DockerCommandExecutor.js';
-import { LocalCommandExecutor } from '../executors/LocalCommandExecutor.js';
+import { DockerCommandExecutor } from '../config/executors/DockerCommandExecutor.js';
+import { LocalCommandExecutor } from '../config/executors/LocalCommandExecutor.js';
 
 export class CommandExecutorFactoryImpl implements CommandExecutorFactory {
   async create(execution: ExecutionTarget): Promise<CommandExecutor> {
