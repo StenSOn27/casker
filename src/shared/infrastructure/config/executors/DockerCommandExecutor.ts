@@ -1,4 +1,4 @@
-import type { CommandSpec } from '../../../shared/domain/interfaces/CommandExecutor.js';
+import type { CommandSpec } from '../../../domain/interfaces/CommandExecutor.js';
 import { BaseCommandExecutor } from './BaseCommandExecutor.js';
 
 export class DockerCommandExecutor extends BaseCommandExecutor {
