@@ -7,6 +7,6 @@ export abstract class BackupEngine<T extends DatabaseConnectionProps = DatabaseC
   abstract backup(config: T, outputDir: string): Promise<BackupResult>;
 
   protected buildBackupFileName(type: DriverType, database: string, at: Date): string {
-    return `${type}-${database}-${at.toISOString().replace(/[:.]/g, '-')}.dump`;
+    return `${type}-${database}-${at.toISOString().replace(/[:.]/g, '-')}.sql`;
   }
 }
