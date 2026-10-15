@@ -2,8 +2,8 @@ export interface CommandSpec {
   bin: string;
   args: string[];
   env: object;
-  stdoutFile?: string | undefined;
-  stdinFile?: string | undefined;
+  stdoutFile?: string;
+  stdinFile?: string;
 }
 
 export abstract class CommandExecutor {
