@@ -12,6 +12,7 @@ export class DockerCommandExecutor extends BaseCommandExecutor {
       ['exec', this.containerName, command.bin, ...command.args],
       { ...process.env, ...command.env },
       command.stdoutFile,
+      command.stdinFile,
     );
   }
 }
