@@ -1,5 +1,5 @@
 import { spawn } from 'node:child_process';
-import { mkdir } from 'node:fs/promises';
+import { mkdir, type FileHandle } from 'node:fs/promises';
 import { dirname } from 'node:path';
 import { open } from 'node:fs/promises';
 import type { CommandExecutor, CommandSpec } from '../../../domain/interfaces/CommandExecutor.js';
@@ -11,16 +11,24 @@ export abstract class BaseCommandExecutor implements CommandExecutor {
     bin: string,
     args: string[],
     env: NodeJS.ProcessEnv,
-    stdoutFile: string,
+    stdoutFile?: string,
+    stdinFile?: string,
   ): Promise<void> {
-    await mkdir(dirname(stdoutFile), { recursive: true });
-    const file = await open(stdoutFile, 'wx');
+    let stdout: FileHandle | undefined;
+    let stdin: FileHandle | undefined;
 
     try {
+      if (stdoutFile) {
+        await mkdir(dirname(stdoutFile), { recursive: true });
+        stdout = await open(stdoutFile, 'wx');
+      } else if (stdinFile) {
+        stdin = await open(stdinFile, 'wx');
+      }
+
       await new Promise<void>((resolve, reject) => {
         const child = spawn(bin, args, {
           env,
-          stdio: ['ignore', file.fd, 'inherit'],
+          stdio: [stdin?.fd ?? 'ignore', stdout?.fd ?? 'inherit', 'inherit'],
         });
 
         child.on('error', reject);
@@ -29,7 +37,8 @@ export abstract class BaseCommandExecutor implements CommandExecutor {
         );
       });
     } finally {
-      await file.close();
+      await stdout?.close();
+      await stdin?.close();
     }
   }
 }

@@ -8,6 +8,7 @@ export class LocalCommandExecutor extends BaseCommandExecutor {
       command.args,
       { ...process.env, ...command.env },
       command.stdoutFile,
+      command.stdinFile,
     );
   }
 }
