@@ -2,7 +2,7 @@ import { spawn } from 'node:child_process';
 import { mkdir, type FileHandle } from 'node:fs/promises';
 import { dirname } from 'node:path';
 import { open } from 'node:fs/promises';
-import type { CommandExecutor, CommandSpec } from '../../../domain/interfaces/CommandExecutor.js';
+import type { CommandExecutor, CommandSpec } from '../../domain/interfaces/CommandExecutor.js';
 
 export abstract class BaseCommandExecutor implements CommandExecutor {
   abstract execute(command: CommandSpec): Promise<void>;
@@ -14,6 +14,11 @@ export abstract class BaseCommandExecutor implements CommandExecutor {
     stdoutFile?: string,
     stdinFile?: string,
   ): Promise<void> {
+    // console.error(
+    //   bin,
+    //   args,
+    //   { stdinFile, stdoutFile },
+    // );
     let stdout: FileHandle | undefined;
     let stdin: FileHandle | undefined;
 
@@ -22,7 +27,7 @@ export abstract class BaseCommandExecutor implements CommandExecutor {
         await mkdir(dirname(stdoutFile), { recursive: true });
         stdout = await open(stdoutFile, 'wx');
       } else if (stdinFile) {
-        stdin = await open(stdinFile, 'wx');
+        stdin = await open(stdinFile, 'r');
       }
 
       await new Promise<void>((resolve, reject) => {

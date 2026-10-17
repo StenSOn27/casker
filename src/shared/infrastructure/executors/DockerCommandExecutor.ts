@@ -1,4 +1,4 @@
-import type { CommandSpec } from '../../../domain/interfaces/CommandExecutor.js';
+import type { CommandSpec } from '../../domain/interfaces/CommandExecutor.js';
 import { BaseCommandExecutor } from './BaseCommandExecutor.js';
 
 export class DockerCommandExecutor extends BaseCommandExecutor {
@@ -9,7 +9,7 @@ export class DockerCommandExecutor extends BaseCommandExecutor {
   async execute(command: CommandSpec): Promise<void> {
     await this.run(
       'docker',
-      ['exec', this.containerName, command.bin, ...command.args],
+      ['exec', '-i', this.containerName, command.bin, ...command.args],
       { ...process.env, ...command.env },
       command.stdoutFile,
       command.stdinFile,
