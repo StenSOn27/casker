@@ -22,6 +22,7 @@ export class PostgresBackupEngine extends BaseBackupEngine<PostgresConnectionPro
         `${config.username}`,
         '-d',
         `${config.database}`,
+        '-Fc',
       ],
       env: {},
       stdoutFile: filePath,
