@@ -92,7 +92,7 @@
       "flagSortOrder": "none"
     },
     "hooks": {
-      "init": ["./dist/shared/presentation/hooks/init/dataSourceInitialize"]
+      "init": ["./dist/shared/presentation/hooks/init/DataSourceInitialize"]
     }
   }
 }
