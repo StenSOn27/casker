@@ -1,6 +1,6 @@
 {
   "name": "casker-cli",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A database backup CLI",
   "main": "./src/shared/presentation/bin/run.js",
   "scripts": {
