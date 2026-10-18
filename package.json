@@ -45,7 +45,7 @@
     "uuid": "^14.0.2"
   },
   "bin": {
-    "casker": "./src/shared/presentation/bin/run.js"
+    "casker": "./dist/shared/presentation/bin/run.js"
   },
   "devDependencies": {
     "@commitlint/cli": "^21.2.3",
