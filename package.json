@@ -1,5 +1,5 @@
 {
-  "name": "casker",
+  "name": "casker-cli",
   "version": "1.0.0",
   "description": "A database backup CLI",
   "main": "./src/shared/presentation/bin/run.js",
