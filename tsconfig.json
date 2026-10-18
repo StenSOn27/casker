@@ -42,7 +42,8 @@
     "strictPropertyInitialization": true,
     "moduleResolution": "nodenext",
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "allowJs": true
   },
-  "exclude": ["eslint.config.mts", "node_modules", "dist"]
+  "exclude": ["eslint.config.mts", "node_modules", "dist", "commitlint.config.js"]
 }
