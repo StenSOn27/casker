@@ -1,5 +1,5 @@
 {
-  "name": "casker",
+  "name": "casker-cli",
   "version": "1.0.0",
   "description": "A database backup CLI",
   "main": "./src/shared/presentation/bin/run.js",
@@ -45,7 +45,7 @@
     "uuid": "^14.0.2"
   },
   "bin": {
-    "casker": "./src/shared/presentation/bin/run.js"
+    "casker": "./dist/shared/presentation/bin/run.js"
   },
   "devDependencies": {
     "@commitlint/cli": "^21.2.3",
@@ -78,6 +78,7 @@
     "better-sqlite3@12.11.1": true,
     "esbuild@0.28.2": true
   },
+  "files": ["dist"],
   "oclif": {
     "bin": "casker",
     "dirname": "casker",
