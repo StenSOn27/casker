@@ -2,7 +2,7 @@ import type { CommandSpec } from '../../../shared/domain/interfaces/CommandExecu
 import type { PostgresConnectionProps } from '../../../shared/domain/value-objects/ConnectionConfig.js';
 import type { BackupCommandBuilder } from '../../domain/interfaces/BackupCommandBuilder.js';
 
-export class PostgresBackupCommandBuilder implements BackupCommandBuilder {
+export class PostgresBackupCommandBuilder implements BackupCommandBuilder<PostgresConnectionProps> {
   buildBackupCommandSpec(config: PostgresConnectionProps, filePath: string): CommandSpec {
     return {
       bin: 'pg_dump',

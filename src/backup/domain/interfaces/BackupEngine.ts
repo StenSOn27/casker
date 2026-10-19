@@ -6,7 +6,7 @@ import type { BackupCommandBuilder } from './BackupCommandBuilder.js';
 export abstract class BackupEngine<T extends DatabaseConnectionProps = DatabaseConnectionProps> {
   constructor(
     protected executor: CommandExecutor,
-    protected builder: BackupCommandBuilder,
+    protected builder: BackupCommandBuilder<T>,
   ) {}
   abstract backup(config: T, outputDir: string): Promise<BackupResult>;
 
