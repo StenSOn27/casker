@@ -6,7 +6,7 @@ import { errorMessage } from '../../../shared/utils/ErrorMessage.js';
 import { BackupFailedError } from '../../domain/errors/BackupFailedError.js';
 import { BackupEngine } from '../../domain/interfaces/BackupEngine.js';
 
-export abstract class BackupEngineImpl<T extends DatabaseConnectionProps> extends BackupEngine<T> {
+export class BackupEngineImpl<T extends DatabaseConnectionProps> extends BackupEngine<T> {
   async backup(config: T, outputDir: string): Promise<BackupResult> {
     const fileName = this.buildBackupFileName(config.type, config.database, new Date());
     const filePath = join(outputDir, fileName);
