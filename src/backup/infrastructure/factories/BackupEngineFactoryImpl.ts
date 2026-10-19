@@ -1,24 +1,23 @@
-import { PostgresBackupEngine } from '../engines/PostgresBackupEngine.js';
 import type { DriverType } from '../../domain/entities/BackupResult.js';
 import type { BackupEngine } from '../../domain/interfaces/BackupEngine.js';
 import type { CommandExecutor } from '../../../shared/domain/interfaces/CommandExecutor.js';
 import { BackupEngineFactory } from '../../domain/factories/BackupEngineFactory.js';
-
-type BackupEngineConstructor = new (executor: CommandExecutor) => BackupEngine;
+import { PostgresBackupCommandBuilder } from '../builders/PostgresBackupCommandBuilder.js';
+import type { BackupCommandBuilder } from '../../domain/interfaces/BackupCommandBuilder.js';
+import type { DatabaseConnectionProps } from '../../../shared/domain/value-objects/ConnectionConfig.js';
+import { BackupEngineImpl } from '../engines/BackupEngineImpl.js';
+import { UnsupportedDatabaseError } from '../../../shared/domain/errors/DatabaseErrors.js';
 
 // @ts-expect-error TS2741: mysql engine is not implemented yet
-export const engines: Record<DriverType, BackupEngineConstructor> = {
-  postgresql: PostgresBackupEngine,
-  // mysql: MySqlBackupEngine,
+const builders: Record<DriverType, BackupCommandBuilder<DatabaseConnectionProps>> = {
+  postgresql: new PostgresBackupCommandBuilder(),
+  // mysql: new MySqlBackupCommandBuilder(),
 };
 
 export class BackupEngineFactoryImpl extends BackupEngineFactory {
   async create(type: DriverType, executor: CommandExecutor): Promise<BackupEngine> {
-    const engine = this.getEngineClass(type);
-    return new engine(executor);
-  }
-
-  private getEngineClass(type: DriverType): BackupEngineConstructor {
-    return engines[type];
+    const builder = builders[type];
+    if (!builder) throw new UnsupportedDatabaseError(type);
+    return new BackupEngineImpl(executor, builder);
   }
 }
