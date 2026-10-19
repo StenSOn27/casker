@@ -1,0 +1,24 @@
+import type { CommandSpec } from '../../../shared/domain/interfaces/CommandExecutor.js';
+import type { PostgresConnectionProps } from '../../../shared/domain/value-objects/ConnectionConfig.js';
+import type { BackupCommandBuilder } from '../../domain/interfaces/BackupCommandBuilder.js';
+
+export class PostgresBackupCommandBuilder implements BackupCommandBuilder {
+  buildBackupCommandSpec(config: PostgresConnectionProps, filePath: string): CommandSpec {
+    return {
+      bin: 'pg_dump',
+      args: [
+        '-h',
+        `${config.host}`,
+        '-p',
+        `${config.port}`,
+        '-U',
+        `${config.username}`,
+        '-d',
+        `${config.database}`,
+        '-Fc',
+      ],
+      env: {},
+      stdoutFile: filePath,
+    };
+  }
+}
