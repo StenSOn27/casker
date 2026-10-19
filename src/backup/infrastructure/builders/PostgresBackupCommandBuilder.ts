@@ -1,14 +1,12 @@
 import type { CommandSpec } from '../../../shared/domain/interfaces/CommandExecutor.js';
 import type { PostgresConnectionProps } from '../../../shared/domain/value-objects/ConnectionConfig.js';
-import { BaseRestoreEngine } from './BaseRestoreEngine.js';
+import type { BackupCommandBuilder } from '../../domain/interfaces/BackupCommandBuilder.js';
 
-export class PostgresRestoreEngine extends BaseRestoreEngine<PostgresConnectionProps> {
-  buildRestoreCommandSpec(config: PostgresConnectionProps, filePath: string): CommandSpec {
+export class PostgresBackupCommandBuilder implements BackupCommandBuilder<PostgresConnectionProps> {
+  buildBackupCommandSpec(config: PostgresConnectionProps, filePath: string): CommandSpec {
     return {
-      bin: 'pg_restore',
+      bin: 'pg_dump',
       args: [
-        '-Fc',
-        '-v',
         '-h',
         `${config.host}`,
         '-p',
@@ -17,11 +15,10 @@ export class PostgresRestoreEngine extends BaseRestoreEngine<PostgresConnectionP
         `${config.username}`,
         '-d',
         `${config.database}`,
-        '--clean',
-        '--if-exists',
+        '-Fc',
       ],
       env: {},
-      stdinFile: filePath,
+      stdoutFile: filePath,
     };
   }
 }
