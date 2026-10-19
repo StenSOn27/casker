@@ -1,26 +1,24 @@
-import type { CommandExecutor } from '../../../shared/domain/interfaces/CommandExecutor.js';
 import type { DatabaseConnectionProps } from '../../../shared/domain/value-objects/ConnectionConfig.js';
-import type { RestoreEngineFactory } from '../../domain/factories/RestoreEngineFactory.js';
+
+import { UnsupportedDatabaseError } from '../../../shared/domain/errors/DatabaseErrors.js';
+import { PostgresRestoreCommandBuilder } from '../builders/PostgresRestoreCommandBuilder.js';
+import type { RestoreCommandBuilder } from '../../domain/interfaces/RestoreCommandBuilder.js';
+import { RestoreEngineFactory } from '../../domain/factories/RestoreEngineFactory.js';
+import type { DriverType } from '../../../backup/domain/entities/BackupResult.js';
+import type { CommandExecutor } from '../../../shared/domain/interfaces/CommandExecutor.js';
 import type { RestoreEngine } from '../../domain/interfaces/RestoreEngine.js';
-import { PostgresRestoreEngine } from '../engines/PostgresRestoreEngine.js';
-
-export type DriverType = DatabaseConnectionProps['type'];
-
-type RestoreEngineConstructor = new (executor: CommandExecutor) => RestoreEngine;
+import { RestoreEngineImpl } from '../engines/RestoreEngineImpl.js';
 
 // @ts-expect-error TS2741: mysql engine is not implemented yet
-export const engines: Record<DriverType, RestoreEngineConstructor> = {
-  postgresql: PostgresRestoreEngine,
-  // mysql: MySqlRestoreEngine,
+const builders: Record<DriverType, RestoreCommandBuilder<DatabaseConnectionProps>> = {
+  postgresql: new PostgresRestoreCommandBuilder(),
+  // mysql: new MySqlBackupCommandBuilder(),
 };
 
-export class RestoreEngineFactoryImpl implements RestoreEngineFactory {
+export class RestoreEngineFactoryImpl extends RestoreEngineFactory {
   async create(type: DriverType, executor: CommandExecutor): Promise<RestoreEngine> {
-    const engine = this.getEngineClass(type);
-    return new engine(executor);
-  }
-
-  private getEngineClass(type: DriverType): RestoreEngineConstructor {
-    return engines[type];
+    const builder = builders[type];
+    if (!builder) throw new UnsupportedDatabaseError(type);
+    return new RestoreEngineImpl(executor, builder);
   }
 }

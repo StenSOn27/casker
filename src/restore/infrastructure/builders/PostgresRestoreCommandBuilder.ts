@@ -1,8 +1,8 @@
 import type { CommandSpec } from '../../../shared/domain/interfaces/CommandExecutor.js';
 import type { PostgresConnectionProps } from '../../../shared/domain/value-objects/ConnectionConfig.js';
-import { BaseRestoreEngine } from './BaseRestoreEngine.js';
+import { RestoreCommandBuilder } from '../../domain/interfaces/RestoreCommandBuilder.js';
 
-export class PostgresRestoreEngine extends BaseRestoreEngine<PostgresConnectionProps> {
+export class PostgresRestoreCommandBuilder implements RestoreCommandBuilder<PostgresConnectionProps> {
   buildRestoreCommandSpec(config: PostgresConnectionProps, filePath: string): CommandSpec {
     return {
       bin: 'pg_restore',
