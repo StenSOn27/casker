@@ -7,7 +7,7 @@ import { createConnectionHandler } from '../../../composition/CreateConnectionHa
 
 export default class ConnectionCliCommand extends Command {
   static usage: string =
-    'conn -t <value> -h <value> -p <value> -U <value> -P <value> -d <value> -e <value> [-c <value>]';
+    'connection -t <value> -h <value> -p <value> -U <value> -P <value> -d <value> -e <value> [-c <value>]';
   static override description = 'Test connection to target database';
   static override flags = {
     type: Flags.custom<DriverType>({
