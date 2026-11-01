@@ -3,7 +3,7 @@ import { Command, Constraints, Flags, Interfaces } from '@oclif/core';
 import chalk from 'chalk';
 import type { DriverType } from '../../../../backup/domain/entities/BackupResult.js';
 import type { RestoreCommand } from '../../../application/commands/RestoreCommand.js';
-import { createRestoreHandler } from '../../../composition/CreateBackupHandler.js';
+import { createRestoreHandler } from '../../../composition/CreateRestoreHandler.js';
 
 export default class RestoreCliCommand extends Command {
   static usage: string =
