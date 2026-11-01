@@ -10,5 +10,5 @@ export abstract class ConnectionEngine<
     protected builder: ConnectionCommandBuilder<T>,
   ) {}
 
-  abstract connection(config: T, backupFilePath: string): Promise<void>;
+  abstract connection(config: T): Promise<void>;
 }

@@ -2,5 +2,5 @@ import type { CommandSpec } from '../../../shared/domain/interfaces/CommandExecu
 import type { DatabaseConnectionProps } from '../../../shared/domain/value-objects/ConnectionConfig.js';
 
 export abstract class ConnectionCommandBuilder<T extends DatabaseConnectionProps> {
-  abstract buildConnectionCommandSpec(config: T, filePath: string): CommandSpec;
+  abstract buildConnectionCommandSpec(config: T): CommandSpec;
 }
