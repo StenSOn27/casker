@@ -7,6 +7,7 @@ export class PostgresConnectionCommandBuilder implements ConnectionCommandBuilde
     return {
       bin: 'pg_isready',
       args: [
+        '-q',
         '-h',
         `${config.host}`,
         '-p',
