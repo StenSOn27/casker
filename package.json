@@ -1,6 +1,6 @@
 {
   "name": "casker-cli",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A database backup CLI",
   "main": "./src/shared/presentation/bin/run.js",
   "scripts": {
@@ -46,7 +46,7 @@
     "uuid": "^14.0.2"
   },
   "bin": {
-    "casker": "./dist/shared/presentation/bin/run.js"
+    "casker": "dist/shared/presentation/bin/run.js"
   },
   "devDependencies": {
     "@commitlint/cli": "^21.2.3",
