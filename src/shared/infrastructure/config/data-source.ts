@@ -15,7 +15,7 @@ export const AppDataSource = new DataSource({
   logging: false,
   entities: [BackupResultModel],
   migrations: [
-    path.join(import.meta.dirname, '../../../backup/infrastructure/persistance/migrations/*.js'),
+    path.join(import.meta.dirname, '../../../backup/infrastructure/persistance/migrations/*.ts'),
   ],
   migrationsRun: true,
   subscribers: [],
