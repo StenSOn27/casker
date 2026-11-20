@@ -31,15 +31,14 @@ export class CreateBackupCommandHandler implements CommandHandler<CreateBackupCo
       return backupResult.getId();
     } catch (err) {
       if (err instanceof BackupFailedError) {
-        const failed = BackupResult.create(
-          command.connection.type,
-          command.outputDir,
-          0,
-          'failed',
-          command.connection.database,
-          err.message,
+        await this.repository.create(
+          BackupResult.failed(
+            command.connection.type,
+            err.filePath,
+            command.connection.database,
+            err.reason,
+          ),
         );
-        await this.repository.create(failed);
       }
       throw err;
     }

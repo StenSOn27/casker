@@ -20,14 +20,6 @@ export class BackupEngineImpl<T extends DatabaseConnectionProps> extends BackupE
     }
 
     const stats = await fs.stat(filePath);
-    const backupResult = BackupResult.create(
-      config.type,
-      filePath,
-      stats.size,
-      'success',
-      config.database,
-    );
-
-    return backupResult;
+    return BackupResult.succeeded(config.type, filePath, stats.size, config.database);
   }
 }
