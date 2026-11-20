@@ -34,20 +34,27 @@ export class BackupResult {
     this.createdAt = createdAt;
   }
 
-  static create(
+  static succeeded(
     driverType: DriverType,
     filePath: string,
     sizeBytes: number,
-    status: Status,
     name: string,
-    errorMessage?: string,
+  ): BackupResult {
+    return new BackupResult(uuidv4(), driverType, filePath, sizeBytes, 'success', name, new Date());
+  }
+
+  static failed(
+    driverType: DriverType,
+    filePath: string,
+    name: string,
+    errorMessage: string,
   ): BackupResult {
     return new BackupResult(
       uuidv4(),
       driverType,
       filePath,
-      sizeBytes,
-      status,
+      0,
+      'failed',
       name,
       new Date(),
       errorMessage,
