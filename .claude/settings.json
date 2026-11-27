@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": ["Bash(npm run lint)", "Bash(npm run build)"],
+    "ask": ["Bash(git push:*)"],
+    "deny": ["Read(./.env)", "Read(./.env.*), Bash(cat .env*)"]
+  },
+  "_disabledPermissions": {
+    "_note": "JSON has no comments. To enable, move these rules into permissions.deny.",
+    "deny": ["Read(./**/*.test.*)", "Read(./**/*.spec.*)"]
+  }
+}

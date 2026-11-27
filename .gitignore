@@ -146,3 +146,4 @@ vite.config.ts.timestamp-*
 # Internal files
 backups/
 casker
+notes.md
