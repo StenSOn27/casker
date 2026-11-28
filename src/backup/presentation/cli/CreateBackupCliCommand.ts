@@ -1,9 +1,9 @@
 import { Command, Constraints, Flags, Interfaces } from '@oclif/core';
 import chalk from 'chalk';
-import type { CreateBackupCommand } from '../../../application/commands/CreateBackupCommand.js';
-import type { ExecutionTarget } from '../../../../shared/domain/factories/CommandExecutorFactory.js';
-import type { DriverType } from '../../../../shared/domain/value-objects/ConnectionConfig.js';
-import { HandlerCliCommand } from '../../../../shared/presentation/cli/HandlerCliCommand.js';
+import type { CreateBackupCommand } from '../../application/commands/CreateBackupCommand.js';
+import type { ExecutionTarget } from '../../../shared/domain/factories/CommandExecutorFactory.js';
+import type { DriverType } from '../../../shared/domain/value-objects/ConnectionConfig.js';
+import { HandlerCliCommand } from '../../../shared/presentation/cli/HandlerCliCommand.js';
 
 const flags = {
   type: Flags.custom<DriverType>({

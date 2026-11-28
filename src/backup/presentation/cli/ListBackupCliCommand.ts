@@ -1,13 +1,10 @@
 import chalk from 'chalk';
 import columnify from 'columnify';
 import { Flags, Interfaces } from '@oclif/core';
-import type {
-  BackupListItem,
-  ListBackupQuery,
-} from '../../../application/queries/ListBackupQuery.js';
-import type { Status } from '../../../domain/entities/BackupResult.js';
-import type { DriverType } from '../../../../shared/domain/value-objects/ConnectionConfig.js';
-import { HandlerCliCommand } from '../../../../shared/presentation/cli/HandlerCliCommand.js';
+import type { BackupListItem, ListBackupQuery } from '../../application/queries/ListBackupQuery.js';
+import type { Status } from '../../domain/entities/BackupResult.js';
+import type { DriverType } from '../../../shared/domain/value-objects/ConnectionConfig.js';
+import { HandlerCliCommand } from '../../../shared/presentation/cli/HandlerCliCommand.js';
 
 const flags = {
   limit: Flags.integer({ char: 'l', default: 10, description: 'Max backups to show' }),

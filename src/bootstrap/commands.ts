@@ -6,8 +6,8 @@ import type { CreateBackupCommand } from '../backup/application/commands/CreateB
 import type { RestoreCommand } from '../restore/application/commands/RestoreCommand.js';
 import type { ConnectionCommand } from '../connection/application/commands/ConnectionCommand.js';
 import type { Handler } from '../shared/application/handlers/Handler.js';
-import CreateBackupCliCommand from '../backup/presentation/cli/commands/CreateBackupCliCommand.js';
-import ListBackupCliCommand from '../backup/presentation/cli/commands/ListBackupCliCommand.js';
+import CreateBackupCliCommand from '../backup/presentation/cli/CreateBackupCliCommand.js';
+import ListBackupCliCommand from '../backup/presentation/cli/ListBackupCliCommand.js';
 import ConnectionCliCommand from '../connection/presentation/cli/ConnectionCliCommand.js';
 import RestoreCliCommand from '../restore/presentation/cli/RestoreCliCommand.js';
 import { CommandExecutorFactoryImpl } from '../shared/infrastructure/factories/CommandExecutorFactoryImpl.js';
