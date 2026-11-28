@@ -2,7 +2,7 @@
   "name": "casker-cli",
   "version": "1.0.9",
   "description": "A database backup CLI",
-  "main": "./src/shared/presentation/bin/run.js",
+  "main": "./src/bootstrap/bin/run.js",
   "scripts": {
     "test": "echo \"no tests yet\" && exit 0",
     "prepare": "husky",
@@ -46,7 +46,7 @@
     "uuid": "^14.0.2"
   },
   "bin": {
-    "casker": "dist/shared/presentation/bin/run.js"
+    "casker": "dist/bootstrap/bin/run.js"
   },
   "devDependencies": {
     "@commitlint/cli": "^21.2.3",
@@ -86,14 +86,14 @@
     "topicSeparator": " ",
     "commands": {
       "strategy": "explicit",
-      "target": "./dist/shared/composition/commands.js",
+      "target": "./dist/bootstrap/commands.js",
       "identifier": "COMMANDS"
     },
     "helpOptions": {
       "flagSortOrder": "none"
     },
     "hooks": {
-      "init": ["./dist/shared/presentation/hooks/init/DataSourceInitialize.js"]
+      "init": ["./dist/bootstrap/hooks/init/ApplicationInitialize.js"]
     }
   }
 }
