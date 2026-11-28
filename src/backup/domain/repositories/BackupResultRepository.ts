@@ -1,4 +1,5 @@
-import type { BackupResult, DriverType, Status } from '../entities/BackupResult.js';
+import type { DriverType } from '../../../shared/domain/value-objects/ConnectionConfig.js';
+import type { BackupResult, Status } from '../entities/BackupResult.js';
 
 export abstract class BackupResultRepository {
   abstract create(result: BackupResult): Promise<string>;

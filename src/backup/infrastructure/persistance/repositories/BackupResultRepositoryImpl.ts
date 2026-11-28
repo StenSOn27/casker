@@ -1,12 +1,9 @@
-import {
-  BackupResult,
-  type DriverType,
-  type Status,
-} from '../../../domain/entities/BackupResult.js';
+import { BackupResult, type Status } from '../../../domain/entities/BackupResult.js';
 import { BackupResultRepository } from '../../../domain/repositories/BackupResultRepository.js';
 import { AppDataSource } from '../../../../shared/infrastructure/config/data-source.js';
 import { BackupResultModel } from '../entities/BackupResultModel.js';
 import { BackupResultMapper } from '../mappers/BackupResultMapper.js';
+import type { DriverType } from '../../../../shared/domain/value-objects/ConnectionConfig.js';
 
 export class BackupResultRepositoryImpl extends BackupResultRepository {
   async create(result: BackupResult): Promise<string> {

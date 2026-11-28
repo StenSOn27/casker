@@ -1,4 +1,5 @@
-import type { DriverType, Status } from '../../domain/entities/BackupResult.js';
+import type { DriverType } from '../../../shared/domain/value-objects/ConnectionConfig.js';
+import type { Status } from '../../domain/entities/BackupResult.js';
 
 export interface ListBackupQuery {
   limit: number;

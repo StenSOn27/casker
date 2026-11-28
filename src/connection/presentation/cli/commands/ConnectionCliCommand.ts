@@ -1,9 +1,9 @@
 import type { ExecutionTarget } from '../../../../shared/domain/factories/CommandExecutorFactory.js';
 import { Command, Constraints, Flags, Interfaces } from '@oclif/core';
 import chalk from 'chalk';
-import type { DriverType } from '../../../../backup/domain/entities/BackupResult.js';
 import type { ConnectionCommand } from '../../../application/commands/ConnectionCommand.js';
 import { createConnectionHandler } from '../../../composition/CreateConnectionHandler.js';
+import type { DriverType } from '../../../../shared/domain/value-objects/ConnectionConfig.js';
 
 export default class ConnectionCliCommand extends Command {
   static usage: string =
