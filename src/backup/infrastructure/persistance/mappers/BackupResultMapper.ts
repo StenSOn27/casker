@@ -1,5 +1,6 @@
+import type { DriverType } from '../../../../shared/domain/value-objects/ConnectionConfig.js';
 import { BackupResult } from '../../../domain/entities/BackupResult.js';
-import type { DriverType, Status } from '../../../domain/entities/BackupResult.js';
+import type { Status } from '../../../domain/entities/BackupResult.js';
 import { BackupResultModel } from '../entities/BackupResultModel.js';
 
 export class BackupResultMapper {

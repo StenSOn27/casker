@@ -6,7 +6,8 @@ import type {
   BackupListItem,
   ListBackupQuery,
 } from '../../../application/queries/ListBackupQuery.js';
-import type { DriverType, Status } from '../../../domain/entities/BackupResult.js';
+import type { Status } from '../../../domain/entities/BackupResult.js';
+import type { DriverType } from '../../../../shared/domain/value-objects/ConnectionConfig.js';
 
 export default class ListBackupCliCommand extends Command {
   static override description = 'Retrieve list of n last backup results';

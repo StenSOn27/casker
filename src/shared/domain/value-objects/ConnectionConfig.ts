@@ -1,6 +1,8 @@
 import { ValueObject } from './ValueObject.js';
 import type { ValueObjectProps } from './ValueObject.js';
 
+export type DriverType = DatabaseConnectionProps['type'];
+
 export interface PostgresConnectionProps extends ValueObjectProps {
   type: 'postgresql';
   host: string;
