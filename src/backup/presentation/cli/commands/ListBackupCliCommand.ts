@@ -1,24 +1,31 @@
 import chalk from 'chalk';
 import columnify from 'columnify';
-import { Command, Flags, Interfaces } from '@oclif/core';
-import { createListBackupHandler } from '../../../composition/CreateListBackupHandler.js';
+import { Flags, Interfaces } from '@oclif/core';
 import type {
   BackupListItem,
   ListBackupQuery,
 } from '../../../application/queries/ListBackupQuery.js';
 import type { Status } from '../../../domain/entities/BackupResult.js';
 import type { DriverType } from '../../../../shared/domain/value-objects/ConnectionConfig.js';
+import { HandlerCliCommand } from '../../../../shared/presentation/cli/HandlerCliCommand.js';
 
-export default class ListBackupCliCommand extends Command {
+const flags = {
+  limit: Flags.integer({ char: 'l', default: 10, description: 'Max backups to show' }),
+  all: Flags.boolean({ description: 'Show all backups' }),
+  status: Flags.custom<Status>({ char: 's', description: 'Filter by status' })(),
+  driver: Flags.custom<DriverType>({ char: 'd', description: 'Filter by driver' })(),
+  json: Flags.boolean({ char: 'j', description: 'Output as JSON' }),
+};
+
+type ListBackupFlags = Interfaces.InferredFlags<typeof flags>;
+
+export default abstract class ListBackupCliCommand extends HandlerCliCommand<
+  ListBackupFlags,
+  ListBackupQuery,
+  BackupListItem[]
+> {
   static override description = 'Retrieve list of n last backup results';
-
-  static override flags = {
-    limit: Flags.integer({ char: 'l', default: 10, description: 'Max backups to show' }),
-    all: Flags.boolean({ description: 'Show all backups' }),
-    status: Flags.custom<Status>({ char: 's', description: 'Filter by status' })(),
-    driver: Flags.custom<DriverType>({ char: 'd', description: 'Filter by driver' })(),
-    json: Flags.boolean({ char: 'j', description: 'Output as JSON' }),
-  };
+  static override flags = flags;
 
   private formatSize(bytes: number): string {
     if (bytes < 1000) return `${bytes} B`;
@@ -38,9 +45,11 @@ export default class ListBackupCliCommand extends Command {
     };
   }
 
-  private toQuery(
-    flags: Interfaces.InferredFlags<typeof ListBackupCliCommand.flags>,
-  ): ListBackupQuery {
+  protected async parseFlags(): Promise<ListBackupFlags> {
+    return (await this.parse(ListBackupCliCommand)).flags;
+  }
+
+  protected toInput(flags: ListBackupFlags): ListBackupQuery {
     return {
       limit: flags.limit,
       status: flags.status,
@@ -49,12 +58,7 @@ export default class ListBackupCliCommand extends Command {
     };
   }
 
-  public async run(): Promise<void> {
-    const { flags } = await this.parse(ListBackupCliCommand);
-    const handler = createListBackupHandler();
-
-    const backups = await handler.handle(this.toQuery(flags));
-
+  protected onSuccess(backups: BackupListItem[], flags: ListBackupFlags): void {
     if (flags.json) {
       console.log(JSON.stringify(backups, null, 2));
       return;
